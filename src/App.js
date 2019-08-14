@@ -4,7 +4,7 @@ import TreeSelect from './TreeSelect';
 
 const App = () => {
   const [treeData, setTreeData] = useState(Data);
-  const [showLevel] = useState(3);
+  const [showLevel] = useState(1);
   const [selectVal] = useState('1');
   const [statuses, setStatuses] = useState([]);
 

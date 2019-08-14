@@ -195,3 +195,17 @@ export const ToggleAll = (data, flag) => {
   }));
   return _.mapValues(newTreeMapData, (value, key) => Object.values(newTreeMapData[key])[0]);
 };
+
+
+export const getRealNode = (data) => _.chain(data)
+  .pickBy((value) => !value.children || value.parentVal !== null).keys().value();
+
+export const getSelectedCount = (collectionA, collectionB) => {
+  const notOptions = [];
+  for (let i = 0; i < collectionB.length; i += 1) {
+    if (!collectionA.includes(collectionB[i])) {
+      notOptions.push(collectionB[i]);
+    }
+  }
+  return collectionB.length - notOptions.length;
+};

@@ -6,7 +6,7 @@ import {
   childrenChain,
   delMapItem,
   findAllChildren,
-  generateTreeDataMap,
+  generateTreeDataMap, getRealNode, getSelectedCount,
   isEmptyArray,
   parentChain, ToggleAll,
 } from './helper';
@@ -14,7 +14,7 @@ import styles from './index.module.scss';
 
 class TreeSelect extends Component {
   state = {
-    showDropDown: false,
+    showDropDown: true,
     treeData: [],
     treeDataMap: {},
     idList: [],
@@ -289,10 +289,10 @@ class TreeSelect extends Component {
     const { label } = this.props;
     const {
       checkedList,
-      idList,
+      treeDataMap,
     } = this.state;
-    const totalLength = idList.length;
-    const selectedOptionsLength = [...new Map([...checkedList]).values()].length;
+    const totalLength = Object.keys(getRealNode(treeDataMap)).length;
+    const selectedOptionsLength = getSelectedCount(getRealNode(treeDataMap), [...new Map([...checkedList]).values()]);
     return (
       <div className={styles.placeholder}>
         {`${label}: ${selectedOptionsLength} of ${totalLength} selected`}
