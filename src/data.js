@@ -6,6 +6,15 @@ export default [
       {
         title: 'Wait for new hire',
         value: '1-1',
+        children: [
+          {
+            title: 'Finding',
+            value: '1-1-1',
+          }, {
+            title: 'Waiting',
+            value: '1-1-2',
+          },
+        ],
       }, {
         title: 'Wait for rotation',
         value: '1-2',

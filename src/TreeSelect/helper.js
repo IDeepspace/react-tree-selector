@@ -160,15 +160,11 @@ export const filterListCheckChildren = (_children, treeDataMap, val) => _childre
 
 export const _parentChain = (treeDataMap, parentNode) => {
   if (parentNode) {
-    const isHalf = parentNode.children.some((item) => {
-      const currentNode = treeDataMap[item];
-      if (currentNode.checkStatus.checked || currentNode.checkStatus.halfChecked) {
-        return true;
-      }
-      return false;
-    });
     // eslint-disable-next-line no-param-reassign
-    parentNode.checkStatus.halfChecked = isHalf;
+    parentNode.checkStatus.halfChecked = parentNode.children.some((item) => {
+      const currentNode = treeDataMap[item];
+      return !!(currentNode.checkStatus.checked || currentNode.checkStatus.halfChecked);
+    });
     if (typeof parentNode.parentVal !== 'undefined') {
       _parentChain(treeDataMap, treeDataMap[parentNode.parentVal]);
     }
